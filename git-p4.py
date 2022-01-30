@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding=utf-8
 #
 # git-p4.py -- A tool for bidirectional operation between a Perforce depot and git.
 #
@@ -15,6 +16,7 @@
 # pylint: disable=too-many-statements,too-many-instance-attributes
 # pylint: disable=too-many-branches,too-many-nested-blocks
 #
+from __future__ import print_function
 import sys
 if sys.version_info.major < 3 and sys.version_info.minor < 7:
     sys.stderr.write("git-p4: requires Python 2.7 or later.\n")
@@ -1458,7 +1460,7 @@ class GitLFS(LargeFileSystem):
         else:
             return LargeFileSystem.processContent(self, git_mode, relPath, contents)
 
-class Command:
+class Command(object):
     delete_actions = ( "delete", "move/delete", "purge" )
     add_actions = ( "add", "branch", "move/add" )
 
@@ -1473,7 +1475,7 @@ class Command:
             setattr(self, attr, value)
         return getattr(self, attr)
 
-class P4UserMap:
+class P4UserMap(object):
     def __init__(self):
         self.userMapFromPerforceServer = False
         self.myP4UserId = None
