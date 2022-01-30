@@ -36,6 +36,8 @@ import ctypes
 import errno
 import glob
 
+from subprocess import CalledProcessError
+
 # On python2.7 where raw_input() and input() are both availble,
 # we want raw_input's semantics, but aliased to input for python3
 # compatibility
